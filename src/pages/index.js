@@ -1,22 +1,22 @@
 import Head from "next/head";
 import Image from "next/image";
 
-// export const getStaticProps = async () => {
-//   // To dynamically call my get-countries api so it works in vercel hosting
-//   // I get the window.location.origin and use it the api call.
-//   //const host = window.location.origin;
-//   //const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/get-countries`);
-//   const res = await fetch('http://localhost:3000/api/get-countries');
-//   const data = await res.json();
+export const getStaticProps = async () => {
+  // To dynamically call my get-countries api so it works in vercel hosting
+  // I get the window.location.origin and use it the api call.
+  //const host = window.location.origin;
+  //const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/get-countries`);
+  const res = await fetch('http://localhost:3000/api/get-countries');
+  const data = await res.json();
 
-//   return {
-//     props: {
-//       countries: data
-//     }
-//   };
-// }
+  return {
+    props: {
+      countries: data
+    }
+  };
+}
 
-export default function Home({ /*countries*/ }) {
+export default function Home({ countries }) {
   return (
     <>
       <Head>
@@ -27,11 +27,11 @@ export default function Home({ /*countries*/ }) {
       </Head>
 
       <main>
-        {/* {countries.map(country =>(
+        { countries.map(country =>(
           <div key={country.area}>
             <div>{country.name.common}</div>
           </div>
-        ))} */}
+        )) }
       </main>
     </>
   );
