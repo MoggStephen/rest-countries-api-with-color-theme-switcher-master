@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Image from "next/image";
-import Layout from "../../components/layout";
 
 // export const getStaticProps = async () => {
 //   // To dynamically call my get-countries api so it works in vercel hosting
