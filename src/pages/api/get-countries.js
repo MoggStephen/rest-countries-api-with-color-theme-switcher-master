@@ -2,7 +2,7 @@
 let countriesCache = null;
 
 export default async function handler(req, res) {
-
+  console.log("API-LOG1");
   // On first load we need to fetch the data
   // We can tell its the first load if countriesCache is null
   if (countriesCache === null) {
@@ -22,7 +22,7 @@ async function fetchCountries(){
     const data = await response.json();
     // Cache the data 
     countriesCache = data;
-    console.log("API-LOG ", countriesCache);
+    console.log("API-LOG2 ", countriesCache);
     // Quick time log
     console.log(`Fetched new data at ${new Date().toLocaleTimeString()}`);
   } 

@@ -8,6 +8,7 @@ const apiUrl = isProduction
 
 export const getServerSideProps = async () => {
 
+  console.log("INDEX-LOG1");
   // Use correct environment path:
   const res = await fetch(`${apiUrl}/get-countries`);
   const data = await res.json();
@@ -21,7 +22,7 @@ export const getServerSideProps = async () => {
 }
 
 export default function Home({ countries }) {
-  console.log("INDEX-LOG ", countries);
+  console.log("INDEX-LOG2 ", countries);
   return (
     <>
       <Head>
