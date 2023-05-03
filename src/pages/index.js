@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Image from "next/image";
 
 // Decipher if we are on localhost for development or vercel for deployment with environment variables!
 const isProduction = process.env.NODE_ENV === 'production';
@@ -22,6 +21,7 @@ export const getServerSideProps = async () => {
 }
 
 export default function Home({ countries }) {
+  console.log("INDEX-LOG ", countries);
   return (
     <>
       <Head>

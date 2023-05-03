@@ -22,6 +22,7 @@ async function fetchCountries(){
     const data = await response.json();
     // Cache the data 
     countriesCache = data;
+    console.log("API-LOG ", countriesCache);
     // Quick time log
     console.log(`Fetched new data at ${new Date().toLocaleTimeString()}`);
   } 
