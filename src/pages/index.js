@@ -12,7 +12,7 @@ export const getStaticProps = async () => {
   // I get the window.location.origin and use it the api call.
   //const res = await fetch('${host}/api/get-countries');
   //const host = window.location.origin;
-  const res = await fetch(`${apiUrl}get-countries`);
+  const res = await fetch(`${apiUrl}/get-countries`);
   const data = await res.json();
 
   return {
