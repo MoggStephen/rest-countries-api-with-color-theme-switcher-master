@@ -1,12 +1,18 @@
 import Head from "next/head";
 import Image from "next/image";
 
+
+const isProduction = process.env.NODE_ENV === 'production';
+const apiUrl = isProduction
+  ? process.env.NEXTJS_HOST_API_URL
+  : process.env.LOCAL_HOST_API_URL;
+
 export const getStaticProps = async () => {
   // To dynamically call my get-countries api so it works in vercel hosting
   // I get the window.location.origin and use it the api call.
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/get-countries`);
-  //const host = window.location.origin;
   //const res = await fetch('${host}/api/get-countries');
+  //const host = window.location.origin;
+  const res = await fetch(`${apiUrl}/api/get-countries`);
   const data = await res.json();
 
   return {
@@ -28,7 +34,7 @@ export default function Home({ countries }) {
 
       <main>
         { countries.map(country =>(
-          <div key={country.area}>
+          <div key={country.name.common}>
             <div>{country.name.common}</div>
           </div>
         )) }
