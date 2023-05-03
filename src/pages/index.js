@@ -4,9 +4,9 @@ import Image from "next/image";
 export const getStaticProps = async () => {
   // To dynamically call my get-countries api so it works in vercel hosting
   // I get the window.location.origin and use it the api call.
-  //const host = window.location.origin;
   //const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/get-countries`);
-  const res = await fetch('http://localhost:3000/api/get-countries');
+  const host = window.location.origin;
+  const res = await fetch('${host}/api/get-countries');
   const data = await res.json();
 
   return {
