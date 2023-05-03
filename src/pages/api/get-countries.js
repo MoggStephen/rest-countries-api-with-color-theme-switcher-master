@@ -15,11 +15,6 @@ export default async function handler(req, res) {
   }
 }
 
-// Refresh the data every day
-setInterval(() => {
-  fetchCountries();
-}, 86400000); // 24 hours in milliseconds
-
 async function fetchCountries(){
   try {
     // Get the data
