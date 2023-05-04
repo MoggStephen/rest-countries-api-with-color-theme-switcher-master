@@ -6,9 +6,9 @@ const apiUrl = isProduction
   ? process.env.NEXTJS_HOST_API_URL
   : process.env.LOCAL_HOST_API_URL;
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async ({req}) => {
 
-  console.log("INDEX-LOG1");
+  console.log(req.headers.host);
   // Use correct environment path:
   const res = await fetch(`${apiUrl}/get-countries`);
   const data = await res.json();
@@ -22,7 +22,7 @@ export const getServerSideProps = async () => {
 }
 
 export default function Home({ countries }) {
-  console.log("INDEX-LOG2 ", countries);
+  //console.log("INDEX-LOG2 ", countries);
   return (
     <>
       <Head>
