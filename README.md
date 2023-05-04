@@ -10,7 +10,7 @@ getserversideprops - gets data at request time.
     - Page always built at build time or revalidate time so its always faster!
 - Negatives: 
     - Cant call an api we create!
-    - Would have to use a package to cache data is always displayed!
+    - Would have to use a package to cache data so content is always displayed!
     - Cant use in components!
 
 # getserversideprops
@@ -29,3 +29,10 @@ getserversideprops - gets data at request time.
 
 So the choice comes down to how i want to cache the data. Do i handle caching myself with an api i create and getserversideprops or use a caching package and getstaticprops.
 I think getserversideprops so i can cache the data simply in a variable in my api! And use it in a component!
+
+# Rundown
+
+- index.js uses serverSideProps to get countries data from get-countries api. Revalidate is used so it performs like getStaticProps.
+- Dynamically creates the host so that i can use localhost for development and so that vercel deployment works! This is done using environment variables and req.headers.host
+- Will hold cached data with revalidate for a day
+- get-countries api will make the request to restcountries api, handle loads of error cases and always returns cached data so the website functionality never breaks!
