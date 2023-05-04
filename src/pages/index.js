@@ -1,6 +1,7 @@
 import Head from "next/head";
 
 // Decipher if we are on localhost for development or vercel for deployment with environment variables!
+// http for local, https for vercel
 const isProduction = process.env.NODE_ENV === 'production';
 const apiUrl = isProduction
   ? process.env.NEXTJS_HOST_API_URL
@@ -8,9 +9,9 @@ const apiUrl = isProduction
 
 export const getServerSideProps = async ({req}) => {
 
-  // Use correct environment path:
+  // Use req.header.host to dynamically display the host name
+  // Both local and vercel deployment now work perfectly!!!!!
   const url = `${apiUrl}://${req.headers.host}/api/get-countries`;
-  console.log(url);
   const res = await fetch(url);
   const data = await res.json();
 
@@ -23,7 +24,6 @@ export const getServerSideProps = async ({req}) => {
 }
 
 export default function Home({ countries }) {
-  //console.log("INDEX-LOG2 ", countries);
   return (
     <>
       <Head>

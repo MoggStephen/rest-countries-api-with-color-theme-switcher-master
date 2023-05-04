@@ -2,17 +2,13 @@
 let countriesCache = null;
 
 export default async function handler(req, res) {
-  //console.log("API-LOG1");
-  // On first load we need to fetch the data
-  // We can tell its the first load if countriesCache is null
-  if (countriesCache === null) {
-    await fetchCountries();
-    res.status(200).json(countriesCache);
-  } 
-  // If not the first load we already have the data cached and can return it
-  else {
-    res.status(200).json(countriesCache);
-  }
+
+  await fetchCountries();
+
+  //Always return the cached data in case the request to restcountries fails!
+  //If it didnt fail then cached data will be up to date!
+  res.status(200).json(countriesCache);
+
 }
 
 async function fetchCountries(){
@@ -20,9 +16,24 @@ async function fetchCountries(){
     // Get the data
     const response = await fetch('https://restcountries.com/v3.1/all');
     const data = await response.json();
+
+    // HANDLE ERRORS
+    //error status code
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message);
+    }
+    //empty response body
+    if (!data) {
+      throw new Error('Response body is empty');
+    }
+    //undexpected data
+    if (!Array.isArray(data) || data.length === 0) {
+      throw new Error('Response data is not in the expected format');
+    }
+    
     // Cache the data 
     countriesCache = data;
-    //console.log("API-LOG2 ", countriesCache);
     // Quick time log
     console.log(`Fetched new data at ${new Date().toLocaleTimeString()}`);
   } 
