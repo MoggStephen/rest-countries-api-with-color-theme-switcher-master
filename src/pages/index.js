@@ -1,14 +1,14 @@
 import Head from "next/head";
+import Image from "next/image";
 
 // Decipher if we are on localhost for development or vercel for deployment with environment variables!
 // http for local, https for vercel
-const isProduction = process.env.NODE_ENV === 'production';
+const isProduction = process.env.NODE_ENV === "production";
 const apiUrl = isProduction
   ? process.env.NEXTJS_HOST_API_URL
   : process.env.LOCAL_HOST_API_URL;
 
-export const getServerSideProps = async ({req}) => {
-
+export const getServerSideProps = async ({ req }) => {
   // Use req.header.host to dynamically display the host name
   // Both local and vercel deployment now work perfectly!!!!!
   const url = `${apiUrl}://${req.headers.host}/api/get-countries`;
@@ -21,7 +21,7 @@ export const getServerSideProps = async ({req}) => {
       revalidate: 86400000, //24 hours in milliseconds. Now works like getstaticprops!
     },
   };
-}
+};
 
 export default function Home({ countries }) {
   return (
@@ -32,13 +32,33 @@ export default function Home({ countries }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main>
-        { countries.map(country =>(
-          <div key={country.name.common}>
-            <div>{country.name.common}</div>
-          </div>
-        )) }
+      <section className="search-filter-section"></section>
+      <main className="countries-section d-flex flex-wrap justify-content-around">
+        {countries.map((country) => (
+          <a className="country-link" key={country.name.common}>
+            <article className="country-container">
+              <Image
+                className="country-flag"
+                src={country.flags.svg}
+                width={300}
+                height={150}
+                alt={country.name.common + " Flag"}
+              />
+              <h2>{country.name.common}</h2>
+              <ul>
+                <li>
+                  <strong>Population:</strong> {country.population}
+                </li>
+                <li>
+                  <strong>Region:</strong> {country.region}
+                </li>
+                <li>
+                  <strong>Capital:</strong> {country.capital}
+                </li>
+              </ul>
+            </article>
+          </a>
+        ))}
       </main>
     </>
   );
