@@ -14,11 +14,12 @@ getserversideprops - gets data at request time.
     - Cant use in components!
 
 # getserversideprops
-- Benefits
-    - With revalidate we can get the same performance as getstaticprops!
+- Benefits:
+    - Can revalidate the data!
     - Can call an api we create to cache data easily!
     - Can use in components
-
+- Negatives:
+    - Page built at request time so always slower than getstaticprops
 # clientsidegeneration
 - benefits
     - content will be up to date
