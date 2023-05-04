@@ -1,0 +1,13 @@
+@import './index/index.scss';
+
+#__next{
+    background-color: lightblue;
+    & > * {
+        margin: 0 5rem 0 5rem;
+    }
+    @media (max-width: 768px) {
+        & > * {
+            margin: 0 1rem 0 1rem;
+        }
+    }
+}
