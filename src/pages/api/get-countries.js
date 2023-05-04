@@ -32,7 +32,7 @@ async function fetchCountries(){
       throw new Error('Response data is not in the expected format');
     }
     
-    // Cache the data 
+    // Response should be valid and we can cache the data 
     countriesCache = data;
     // Quick time log
     console.log(`Fetched new data at ${new Date().toLocaleTimeString()}`);
@@ -40,6 +40,6 @@ async function fetchCountries(){
   // If restcountries ever breaks just catch and log it!
   // We have countriesCache as a backup
   catch (error) {
-    console.error('restcountries api error: ', error);
+    console.error(`${new Date().toLocaleTimeString()}. 'https://restcountries.com/v3.1/all' api error: `, error);
   }
 }

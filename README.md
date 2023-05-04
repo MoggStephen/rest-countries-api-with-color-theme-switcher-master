@@ -33,6 +33,6 @@ I think getserversideprops so i can cache the data simply in a variable in my ap
 # Rundown
 
 - index.js uses serverSideProps to get countries data from get-countries api. Revalidate is used so it performs like getStaticProps.
-- Dynamically creates the host so that i can use localhost for development and so that vercel deployment works! This is done using environment variables and req.headers.host
-- Will hold cached data with revalidate for a day
+- Revalidate handles the caching of the data for 24 hours and the get-countries api handles caching the data if the restcountries api ever breaks!
 - get-countries api will make the request to restcountries api, handle loads of error cases and always returns cached data so the website functionality never breaks!
+- Dynamically creates the host so that i can use localhost for development and so that vercel deployment works! This is done using environment variables and req.headers.host
