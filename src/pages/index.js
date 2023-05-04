@@ -9,7 +9,7 @@ const apiUrl = isProduction
 export const getServerSideProps = async ({req}) => {
 
   // Use correct environment path:
-  const url = `https://${req.headers.host}/api/get-countries`;
+  const url = `${apiUrl}://${req.headers.host}/api/get-countries`;
   console.log(url);
   const res = await fetch(url);
   const data = await res.json();
