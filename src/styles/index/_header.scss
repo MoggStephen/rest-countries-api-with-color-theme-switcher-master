@@ -1,0 +1,28 @@
+@import "~bootstrap-icons/font/bootstrap-icons.scss";
+
+.header-container{
+    background-color: $darkModeElementColor;
+    color: $darkModeText;
+    .header-content{
+        color: $darkModeText;
+        h1{
+            font-weight: 800;
+            font-size: 1.5rem;
+            //To fix nunito sans weird line height
+            padding-top: 0.1rem;
+        }
+        button{
+            font-weight: 600;
+            font-size: 1rem;
+            color: $darkModeText;
+            border:0;
+            padding:0;
+            &:hover{
+                opacity: 0.5;
+            }
+            &:focus{
+                opacity: 0.5;
+            }
+        }
+    }
+}

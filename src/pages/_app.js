@@ -1,6 +1,6 @@
 import '@/styles/globals.scss'
 //Import google font!
-import { Nunito_Sans } from 'next/font/google'
+import { Nunito_Sans } from '@next/font/google'
 const nunitoSans = Nunito_Sans({ subsets: ['latin'], weight: ['300','600','800'] })
 //Import bootstrap and import useEffect for bootstraps bundled js.
 import 'bootstrap/scss/bootstrap.scss';
@@ -14,8 +14,8 @@ export default function App({ Component, pageProps }) {
   }, []);
 
   return (
-    <main className={nunitoSans.className}>
+    <div className={nunitoSans.className}>
       <Component {...pageProps} />
-    </main>
+    </div>
   )
 }

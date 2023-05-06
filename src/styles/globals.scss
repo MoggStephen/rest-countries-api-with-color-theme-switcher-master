@@ -1,15 +1,43 @@
-@import './index/index.scss';
+//STYLES
+//darkmode
+$darkModeBgColor: #202d36;
+$darkModeElementColor: #2b3743;
+$darkModeText: hsl(0, 0%, 100%);
+//lightmode
+$lightModeBgColor: hsl(0, 0%, 98%);
+$lightModeElementColor: hsl(0, 0%, 100%);
+$lightModeText: hsl(200, 15%, 8%);
 
-#__next{
-    background-color: lightblue;
-    
-    //Logic to sort all containers on the page!
-    & > * {
-        margin: 0 5rem 0 5rem;
+
+$countriesFs: 14px;
+$countryDetailFs: 16px;
+
+@import "./index/index.scss";
+@import "./index/header.scss";
+@import "./index/search-filter.scss";
+
+*, *::before, *::after{
+  box-sizing: border-box;
+}
+//Sort responsive font-sizes!
+html{
+  font-size: 16px;
+  @media (max-width: 576px) {
+    font-size: 12px;
+  }
+}
+
+#__next {
+  background-color: $darkModeBgColor;
+
+  //Logic to sort all containers on the page!
+  //Select all direct children of all the direct child elements
+  & > * > * {
+    padding: 0 5rem 0 5rem;
+  }
+  @media (max-width: 750px) {
+    & > * > * {
+      padding: 0 2rem 0 2rem;
     }
-    @media (max-width: 768px) {
-        & > * {
-            margin: 0 1rem 0 1rem;
-        }
-    }
+  }
 }

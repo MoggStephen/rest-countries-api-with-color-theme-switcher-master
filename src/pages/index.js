@@ -42,7 +42,8 @@ export default function Home({ countries }) {
       <SearchFilter/>    
 
       {/* COUNTRIES SECTION */}
-      <main className="countries-section d-flex flex-wrap justify-content-center justify-content-sm-between justify-content-md-between">
+      <main className="countries-container">
+        <div className="countries-content">
         {countries.map((country) => (
           // Country
           <a className="country-link" key={country.name.common}>
@@ -52,8 +53,7 @@ export default function Home({ countries }) {
                 src={country.flags.svg}
                 width={264}
                 height={160}
-                alt={country.name.common + " Flag"}
-                //style={{objectFit: "contain"}}             
+                alt={country.name.common + " Flag"}           
               />
               <h2>{country.name.common}</h2>
               <ul>
@@ -64,6 +64,7 @@ export default function Home({ countries }) {
             </article>
           </a>
         ))}
+        </div>        
       </main>
     </>
   );

@@ -1,18 +1,46 @@
 $mwCountry: 16.5rem;
 
-.country-link{
-    width: 16.5rem;
-    background-color: grey;
-    margin-bottom: 4.688rem;
-    .country-container{
+$darkModeElementColor: #2b3743;
+
+.countries-container{
+  .countries-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    gap: 2rem;
+  
+    @media (max-width: 750px) {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-items: center;
+    }
+  
+    .country-link {
+      background-color: $darkModeElementColor;
+      width: 16.5rem;
+      
+      @media (max-width: 750px) {
+          max-width: 33.125rem;
+          width: 100%;
+      }
+  
+      .country-container {
         width: 100%;
-        .country-flag{
-            width: 100%;
-            //Fixes issue of images displaying container background color on some images.
-            //This is due to next/image optimizations!
-            //Unfortunately some of the flags are not displayed perfectly.
-            object-fit: cover;
-            object-position: center;
+        .country-flag {
+          width: 100%;
+          //Fixes issue of images displaying container background color on some images.
+          //This is due to next/image optimizations!
+          //Unfortunately some of the flags are not displayed perfectly.
+          object-fit: cover;
+          object-position: center;
+  
+          @media (max-width: 750px) {
+              height: auto;
+          }
         }
-    }   
+      }
+    }
+  }
 }
+

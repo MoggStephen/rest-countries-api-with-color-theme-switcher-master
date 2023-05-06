@@ -1,0 +1,81 @@
+@import "~bootstrap-icons/font/bootstrap-icons.scss";
+
+.search-filter-container {
+  .search-filter-content {
+    color: $darkModeText;
+    label{
+      max-width: 29.375rem;
+      min-width: 11.375rem;
+      width: 100%;
+      background-color: $darkModeElementColor;
+      #search-country {
+        background-color: $darkModeElementColor;
+        color: $darkModeText;
+        font-weight: 300;
+        border: 0;
+        outline: 0;
+        width: 100%;
+        &::placeholder{
+          opacity: 1;
+          color: $darkModeText;
+          font-weight: 300;
+        }
+        &:hover {
+          //Reset bootstrap box-shadow
+          box-shadow: none ;
+        }
+        &:focus {
+          //Reset bootstrap box-shadow
+          box-shadow: none;
+        }
+      }
+      i{
+        font-size:1rem;
+      }
+    }
+    
+
+    .region-dropdown{
+      background-color: $darkModeElementColor;
+      #region-dropdown-btn{
+        width: 196px;
+        border:0 !important;
+        outline: none !important;
+        color: $darkModeText;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        &:after{
+          display: block;
+          margin-left: auto;
+        }
+        &:hover{
+          border:0 !important;
+          outline: none !important;
+          box-shadow: none;
+        }
+        &:focus{
+          border:0 !important;
+          outline: none !important;
+          box-shadow: none;
+        }
+      }
+      #region-menu{
+        background-color: $darkModeElementColor;
+        border:0;
+        outline: none;
+        width: 196px;       
+        li{
+          a{
+            color: $darkModeText;
+            &:hover{
+              background-color: $darkModeElementColor;
+              opacity: 0.5;
+            }
+          }
+        }
+      }
+      
+    }
+  }
+}
