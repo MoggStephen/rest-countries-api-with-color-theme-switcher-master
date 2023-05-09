@@ -1,11 +1,8 @@
 //NEXT COMPONENTS
 import Head from "next/head";
-import Image from "next/image";
 //COMPONENTS
 import Header from "../../components/header";
-import SearchFilter from "../../components/search-filter";
-//HOOKS
-import React, { useState, useEffect } from "react";
+import Countries from "../../components/countries/countries";
 
 // Decipher if we are on localhost for development or vercel for deployment with environment variables!
 // http for local, https for vercel
@@ -21,63 +18,17 @@ export const getServerSideProps = async ({ req }) => {
   // Both local and vercel deployment now work perfectly!!!!!
   const url = `${apiUrl}://${req.headers.host}/api/get-countries`;
   const res = await fetch(url);
-  const data = await res.json();
+  const countriesData = await res.json();
 
   return {
     props: {
-      countriesData: data,
+      data: countriesData,
       revalidate: 86400000, //24 hours in milliseconds. Now works similar to getstaticprops!
     },
   };
 };
 
-export default function Home({ countriesData }) {
-  const [countries, setCountries] = useState(countriesData || []); //Check the countriesData is truthy before setting it.
-  const [regions, setRegions] = useState([]);
-
-  //HANDLE SEARCH TYPE
-  const handleSearchType = (event) => {
-    const text = event.target.value;
-    const newData = [];
-    countriesData.map((country)=> {
-      if (country.name.common.toLowerCase().includes(text.toLowerCase())) {
-        newData.push(country);
-      }     
-    })
-    setCountries(newData);
-  }
-  //HANDLE REGION CLICK
-  const handleRegionClick = (region) =>{
-    const regionBtn = document.getElementById("region-dropdown-btn");
-
-    if (region === "all") {
-      setCountries(countriesData);
-      regionBtn.textContent = "Filter By Region";
-    }
-    else{
-      regionBtn.textContent = region;
-      const newData = [];
-      countriesData.map((country) =>{
-        if (country.region === region) {
-          newData.push(country);
-        }
-      })
-      setCountries(newData);
-    }
-  }
-  //Get the available regions in the countriesData.
-  useEffect(() => {
-    const uniqueRegions = new Set();
-
-    countriesData.forEach((country) => {
-      if (country.region && !uniqueRegions.has(country.region)) {
-        uniqueRegions.add(country.region);
-      }
-    });
-  
-    setRegions(Array.from(uniqueRegions));
-  }, []);
-
+export default function Home({data}) {
   return (
     <>
       <Head>
@@ -87,50 +38,9 @@ export default function Home({ countriesData }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* Header */}
       <Header />
 
-      
-      {/* SEARCH FILTER SECTION */}
-      <SearchFilter regions={regions} regionClick={handleRegionClick} searchType={handleSearchType}/>
-
-      {/* COUNTRIES SECTION */}
-      <main className="countries-container">
-        <div className="countries-content">
-          {countries.map((country) => (
-            // Country
-            <a
-              className="country-link rounded-1 text-decoration-none"
-              key={country.name.common}
-            >
-              <article className="country-container p">
-                <Image
-                  className="country-flag rounded-top"
-                  src={country.flags.svg}
-                  width={264}
-                  height={160}
-                  alt={country.name.common + " Flag"}
-                />
-                <div className="text-container p-4">
-                  <h2>{country.name.common}</h2>
-                  <ul className="p-0">
-                    <li>
-                      <strong>Population:</strong>{" "}
-                      {country.population.toLocaleString()}
-                    </li>
-                    <li>
-                      <strong>Region:</strong> {country.region}
-                    </li>
-                    <li>
-                      <strong>Capital:</strong> {country.capital}
-                    </li>
-                  </ul>
-                </div>
-              </article>
-            </a>
-          ))}
-        </div>
-      </main>
+      <Countries countriesData={data}/>
     </>
   );
 }
