@@ -1,8 +1,11 @@
+//NEXT COMPONENTS
 import Head from "next/head";
 import Image from "next/image";
-import Header from '../../components/header'
+//COMPONENTS
+import Header from "../../components/header";
 import SearchFilter from "../../components/search-filter";
-import { useState } from "react";
+//HOOKS
+import React, { useState, useEffect } from "react";
 
 // Decipher if we are on localhost for development or vercel for deployment with environment variables!
 // http for local, https for vercel
@@ -11,6 +14,7 @@ const apiUrl = isProduction
   ? process.env.NEXTJS_HOST_API_URL
   : process.env.LOCAL_HOST_API_URL;
 
+//Collect countries data!
 export const getServerSideProps = async ({ req }) => {
   // Try setinterval here so getstaticprops works?
   // Use req.header.host to dynamically display the host name
@@ -27,8 +31,35 @@ export const getServerSideProps = async ({ req }) => {
   };
 };
 
+
 export default function Home({ countriesData }) {
   const [countries, setCountries] = useState(countriesData || []); //Check the countriesData is truthy before setting it.
+  const [regions, setRegions] = useState([]);
+
+  //HANDLE REGION CLICK
+  const handleRegionClick = async (region) =>{
+    try {
+      const response = await fetch(`https://restcountries.com/v3.1/region/${region}`);
+      const data = await response.json();
+
+      setCountries(data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }
+  //Get the available regions in the countriesData.
+  useEffect(() => {
+    const uniqueRegions = new Set();
+  
+    countriesData.forEach((country) => {
+      if (country.region && !uniqueRegions.has(country.region)) {
+        uniqueRegions.add(country.region);
+      }
+    });
+  
+    setRegions(Array.from(uniqueRegions));
+  }, []);
+
   return (
     <>
       <Head>
@@ -37,38 +68,48 @@ export default function Home({ countriesData }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      
+
       {/* Header */}
-      <Header/>
+      <Header />
       {/* SEARCH FILTER SECTION */}
-      <SearchFilter/>    
+      <SearchFilter regions={regions} regionClick={handleRegionClick}/>
 
       {/* COUNTRIES SECTION */}
       <main className="countries-container">
         <div className="countries-content">
-        {countries.map((country) => (
-          // Country
-          <a className="country-link rounded-1 text-decoration-none" key={country.name.common}>
-            <article className="country-container p">
-              <Image
-                className="country-flag rounded-1"
-                src={country.flags.svg}
-                width={264}
-                height={160}
-                alt={country.name.common + " Flag"}           
-              />
-              <div className="text-container p-4">
-                <h2>{country.name.common}</h2>
-                <ul className="p-0">
-                  <li><strong>Population:</strong> {country.population.toLocaleString()}</li>
-                  <li><strong>Region:</strong> {country.region}</li>
-                  <li><strong>Capital:</strong> {country.capital}</li>
-                </ul>
-              </div>             
-            </article>
-          </a>
-        ))}
-        </div>        
+          {countries.map((country) => (
+            // Country
+            <a
+              className="country-link rounded-1 text-decoration-none"
+              key={country.name.common}
+            >
+              <article className="country-container p">
+                <Image
+                  className="country-flag rounded-top"
+                  src={country.flags.svg}
+                  width={264}
+                  height={160}
+                  alt={country.name.common + " Flag"}
+                />
+                <div className="text-container p-4">
+                  <h2>{country.name.common}</h2>
+                  <ul className="p-0">
+                    <li>
+                      <strong>Population:</strong>{" "}
+                      {country.population.toLocaleString()}
+                    </li>
+                    <li>
+                      <strong>Region:</strong> {country.region}
+                    </li>
+                    <li>
+                      <strong>Capital:</strong> {country.capital}
+                    </li>
+                  </ul>
+                </div>
+              </article>
+            </a>
+          ))}
+        </div>
       </main>
     </>
   );

@@ -37,3 +37,5 @@ I think getserversideprops so i can cache the data simply in a variable in my ap
 - Revalidate handles the caching of the data for 24 hours and the get-countries api handles caching the data if the restcountries api ever breaks!
 - get-countries api will make the request to restcountries api, handle loads of error cases and always returns cached data so the website functionality never breaks!
 - Dynamically creates the host so that i can use localhost for development and so that vercel deployment works! This is done using environment variables and req.headers.host
+- Querying the api for the region takes quite a while. It will definitely be best if i do the logic myself in js.
+- I need a state of the first countries data on load and the current data that we are searching through.

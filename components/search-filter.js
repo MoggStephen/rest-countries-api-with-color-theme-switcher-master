@@ -1,4 +1,4 @@
-export default function SearchFilter() {
+export default function SearchFilter({ regions, regionClick }) {
   return (
   <section className="search-filter-container my-4">
     <div className="search-filter-content d-flex justify-content-between align-items-center flex-wrap gap-2">
@@ -15,10 +15,16 @@ export default function SearchFilter() {
         </button>
 
         <ul className="dropdown-menu" id="region-menu" aria-labelledby="region-dropdown-btn">
-          {/* GENERATED WITH ALL REGIONS */}
-          <li><a className="dropdown-item px-4" href="#/">option1</a></li>
-          <li><a className="dropdown-item px-4" href="#/">option2</a></li>
-          <li><a className="dropdown-item px-4" href="#/">option3</a></li>
+          {/* GENERATED WITH ALL REGIONS */
+          regions.map((region) => (
+            <li key={region}>
+              <button className="dropdown-item px-4" onClick={() => regionClick(region)}>
+                {region}
+              </button>
+            </li>
+          ))
+          
+          }
         </ul>
 
       </div>

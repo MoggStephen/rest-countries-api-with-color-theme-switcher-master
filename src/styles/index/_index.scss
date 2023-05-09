@@ -29,6 +29,8 @@ $mwCountry: 16.5rem;
       .country-container {
         width: 100%;
         .country-flag {
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
           width: 100%;
           //Fixes issue of images displaying container background color on some images.
           //This is due to next/image optimizations!
