@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Header from '../../components/header'
 import SearchFilter from "../../components/search-filter";
+import { useState } from "react";
 
 // Decipher if we are on localhost for development or vercel for deployment with environment variables!
 // http for local, https for vercel
@@ -20,13 +21,14 @@ export const getServerSideProps = async ({ req }) => {
 
   return {
     props: {
-      countries: data,
+      countriesData: data,
       revalidate: 86400000, //24 hours in milliseconds. Now works like getstaticprops!
     },
   };
 };
 
-export default function Home({ countries }) {
+export default function Home({ countriesData }) {
+  const [countries, setCountries] = useState(countriesData || []); //Check the countriesData is truthy before setting it.
   return (
     <>
       <Head>
@@ -46,21 +48,23 @@ export default function Home({ countries }) {
         <div className="countries-content">
         {countries.map((country) => (
           // Country
-          <a className="country-link" key={country.name.common}>
-            <article className="country-container">
+          <a className="country-link rounded-1 text-decoration-none" key={country.name.common}>
+            <article className="country-container p">
               <Image
-                className="country-flag"
+                className="country-flag rounded-1"
                 src={country.flags.svg}
                 width={264}
                 height={160}
                 alt={country.name.common + " Flag"}           
               />
-              <h2>{country.name.common}</h2>
-              <ul>
-                <li><strong>Population:</strong> {country.population}</li>
-                <li><strong>Region:</strong> {country.region}</li>
-                <li><strong>Capital:</strong> {country.capital}</li>
-              </ul>
+              <div className="text-container p-4">
+                <h2>{country.name.common}</h2>
+                <ul className="p-0">
+                  <li><strong>Population:</strong> {country.population.toLocaleString()}</li>
+                  <li><strong>Region:</strong> {country.region}</li>
+                  <li><strong>Capital:</strong> {country.capital}</li>
+                </ul>
+              </div>             
             </article>
           </a>
         ))}

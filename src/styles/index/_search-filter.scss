@@ -2,22 +2,25 @@
 
 .search-filter-container {
   .search-filter-content {
-    color: $darkModeText;
+    color: var(--text-color);
     label{
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05),
+              4px 4px 4px rgba(0, 0, 0, 0.05),
+              -4px 4px 4px rgba(0, 0, 0, 0.05);
       max-width: 29.375rem;
       min-width: 11.375rem;
       width: 100%;
-      background-color: $darkModeElementColor;
+      background-color: var(--element-bg-color);
       #search-country {
-        background-color: $darkModeElementColor;
-        color: $darkModeText;
+        background-color: var(--element-bg-color);
+        color: var(--text-color);
         font-weight: 300;
         border: 0;
         outline: 0;
         width: 100%;
         &::placeholder{
           opacity: 1;
-          color: $darkModeText;
+          color: var(--text-color);
           font-weight: 300;
         }
         &:hover {
@@ -36,12 +39,15 @@
     
 
     .region-dropdown{
-      background-color: $darkModeElementColor;
+      background-color: var(--element-bg-color);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05),
+              4px 4px 4px rgba(0, 0, 0, 0.05),
+              -4px 4px 4px rgba(0, 0, 0, 0.05);
       #region-dropdown-btn{
         width: 196px;
         border:0 !important;
         outline: none !important;
-        color: $darkModeText;
+        color: var(--text-color);
         text-align: left;
         display: flex;
         align-items: center;
@@ -61,15 +67,18 @@
         }
       }
       #region-menu{
-        background-color: $darkModeElementColor;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05),
+              4px 4px 4px rgba(0, 0, 0, 0.05),
+              -4px 4px 4px rgba(0, 0, 0, 0.05);
+        background-color: var(--element-bg-color);
         border:0;
         outline: none;
         width: 196px;       
         li{
           a{
-            color: $darkModeText;
+            color: var(--text-color);
             &:hover{
-              background-color: $darkModeElementColor;
+              background-color: var(--element-bg-color);
               opacity: 0.5;
             }
           }

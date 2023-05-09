@@ -8,6 +8,17 @@ $lightModeBgColor: hsl(0, 0%, 98%);
 $lightModeElementColor: hsl(0, 0%, 100%);
 $lightModeText: hsl(200, 15%, 8%);
 
+:root{
+  --bg-color: #202d36;
+  --element-bg-color: #2b3743;
+  --text-color: hsl(0, 0%, 100%);
+}
+.dark-mode{
+  --bg-color: hsl(0, 0%, 98%);
+  --element-bg-color: hsl(0, 0%, 100%);
+  --text-color: hsl(200, 15%, 8%);
+}
+
 
 $countriesFs: 14px;
 $countryDetailFs: 16px;
@@ -16,6 +27,7 @@ $countryDetailFs: 16px;
 @import "./index/header.scss";
 @import "./index/search-filter.scss";
 
+//Boilerplate
 *, *::before, *::after{
   box-sizing: border-box;
 }
@@ -28,7 +40,7 @@ html{
 }
 
 #__next {
-  background-color: $darkModeBgColor;
+  background-color: var(--bg-color);
 
   //Logic to sort all containers on the page!
   //Select all direct children of all the direct child elements

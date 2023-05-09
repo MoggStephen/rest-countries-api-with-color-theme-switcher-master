@@ -3,8 +3,13 @@ export default function Header() {
     <header className="header-container">
       <div className="header-content py-5 py-sm-4 d-flex justify-content-center align-items-center">
         <h1 className="m-0">Where in the world?</h1>
-        <button className="btn ms-auto"> <i class="bi bi-moon-fill me-1 me-sm-2"></i>Dark Mode</button>
+        <button className="btn ms-auto" onClick={darkModeHandler}> <i className="bi bi-moon-fill me-1 me-sm-2"></i>Dark Mode</button>
       </div>
     </header>
   );
+}
+
+function darkModeHandler(){
+  const root = document.querySelector("html");
+  root.classList.toggle("dark-mode");
 }

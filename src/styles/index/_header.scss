@@ -1,10 +1,13 @@
 @import "~bootstrap-icons/font/bootstrap-icons.scss";
 
 .header-container{
-    background-color: $darkModeElementColor;
-    color: $darkModeText;
+    background-color: var(--element-bg-color);
+    color: var(--text-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05),
+              4px 4px 4px rgba(0, 0, 0, 0.05),
+              -4px 4px 4px rgba(0, 0, 0, 0.05);
     .header-content{
-        color: $darkModeText;
+        color: var(--text-color);
         h1{
             font-weight: 800;
             font-size: 1.5rem;
@@ -14,13 +17,10 @@
         button{
             font-weight: 600;
             font-size: 1rem;
-            color: $darkModeText;
+            color: var(--text-color);
             border:0;
             padding:0;
             &:hover{
-                opacity: 0.5;
-            }
-            &:focus{
                 opacity: 0.5;
             }
         }

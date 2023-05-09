@@ -1,30 +1,31 @@
 $mwCountry: 16.5rem;
 
-$darkModeElementColor: #2b3743;
-
-.countries-container{
+.countries-container {
   .countries-content {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
     gap: 2rem;
-  
+
     @media (max-width: 750px) {
       flex-direction: column;
       flex-wrap: nowrap;
       align-items: center;
     }
-  
+
     .country-link {
-      background-color: $darkModeElementColor;
+      background-color: var(--element-bg-color);
       width: 16.5rem;
-      
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05),
+              4px 4px 4px rgba(0, 0, 0, 0.05),
+              -4px 4px 4px rgba(0, 0, 0, 0.05);
+
       @media (max-width: 750px) {
-          max-width: 33.125rem;
-          width: 100%;
+        max-width: 33.125rem;
+        width: 100%;
       }
-  
+
       .country-container {
         width: 100%;
         .country-flag {
@@ -34,13 +35,25 @@ $darkModeElementColor: #2b3743;
           //Unfortunately some of the flags are not displayed perfectly.
           object-fit: cover;
           object-position: center;
-  
+
           @media (max-width: 750px) {
-              height: auto;
+            height: auto;
+          }
+        }
+        .text-container {
+          color: var(--text-color);
+          h2 {
+            font-size: 1.125rem;
+            font-weight: 800;
+          }
+          ul {
+            font-size: 0.875rem;
+            li {
+              list-style-type: none;
+            }
           }
         }
       }
     }
   }
 }
-
