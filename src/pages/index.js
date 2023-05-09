@@ -26,11 +26,10 @@ export const getServerSideProps = async ({ req }) => {
   return {
     props: {
       countriesData: data,
-      revalidate: 86400000, //24 hours in milliseconds. Now works like getstaticprops!
+      revalidate: 86400000, //24 hours in milliseconds. Now works similar to getstaticprops!
     },
   };
 };
-
 
 export default function Home({ countriesData }) {
   const [countries, setCountries] = useState(countriesData || []); //Check the countriesData is truthy before setting it.
@@ -38,19 +37,18 @@ export default function Home({ countriesData }) {
 
   //HANDLE REGION CLICK
   const handleRegionClick = async (region) =>{
-    try {
-      const response = await fetch(`https://restcountries.com/v3.1/region/${region}`);
-      const data = await response.json();
-
-      setCountries(data);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
+    const newData = [];
+    countriesData.map((country) =>{
+      if (country.region === region) {
+        newData.push(country);
+      }
+    })
+    setCountries(newData);
   }
   //Get the available regions in the countriesData.
   useEffect(() => {
     const uniqueRegions = new Set();
-  
+
     countriesData.forEach((country) => {
       if (country.region && !uniqueRegions.has(country.region)) {
         uniqueRegions.add(country.region);
