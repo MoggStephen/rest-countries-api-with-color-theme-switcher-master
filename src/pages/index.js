@@ -37,13 +37,22 @@ export default function Home({ countriesData }) {
 
   //HANDLE REGION CLICK
   const handleRegionClick = async (region) =>{
-    const newData = [];
-    countriesData.map((country) =>{
-      if (country.region === region) {
-        newData.push(country);
-      }
-    })
-    setCountries(newData);
+    const regionBtn = document.getElementById("region-dropdown-btn");
+    if (region === "all") {
+      setCountries(countriesData);
+      regionBtn.textContent = "Filter By Region";
+    }
+    else{
+      regionBtn.textContent = region;
+      const newData = [];
+      countriesData.map((country) =>{
+        if (country.region === region) {
+          newData.push(country);
+        }
+      })
+      setCountries(newData);
+    }
+    
   }
   //Get the available regions in the countriesData.
   useEffect(() => {
