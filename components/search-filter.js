@@ -1,4 +1,4 @@
-export default function SearchFilter({ regions, regionClick }) {
+export default function SearchFilter({ regions, regionClick, searchType }) {
   return (
     <section className="search-filter-container my-4">
       <div className="search-filter-content d-flex justify-content-between align-items-center flex-wrap gap-2">
@@ -12,6 +12,7 @@ export default function SearchFilter({ regions, regionClick }) {
             className="form-control p-0"
             id="search-country"
             placeholder="Search for a country..."
+            onChange={searchType}
           ></input>
         </label>
 

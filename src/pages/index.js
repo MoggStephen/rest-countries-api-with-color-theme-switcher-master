@@ -35,8 +35,19 @@ export default function Home({ countriesData }) {
   const [countries, setCountries] = useState(countriesData || []); //Check the countriesData is truthy before setting it.
   const [regions, setRegions] = useState([]);
 
+  //HANDLE SEARCH TYPE
+  const handleSearchType = (event) => {
+    const text = event.target.value;
+    const newData = [];
+    countriesData.map((country)=> {
+      if (country.name.common.toLowerCase().includes(text.toLowerCase())) {
+        newData.push(country);
+      }     
+    })
+    setCountries(newData);
+  }
   //HANDLE REGION CLICK
-  const handleRegionClick = async (region) =>{
+  const handleRegionClick = (region) =>{
     const regionBtn = document.getElementById("region-dropdown-btn");
     if (region === "all") {
       setCountries(countriesData);
@@ -52,7 +63,6 @@ export default function Home({ countriesData }) {
       })
       setCountries(newData);
     }
-    
   }
   //Get the available regions in the countriesData.
   useEffect(() => {
@@ -79,7 +89,7 @@ export default function Home({ countriesData }) {
       {/* Header */}
       <Header />
       {/* SEARCH FILTER SECTION */}
-      <SearchFilter regions={regions} regionClick={handleRegionClick}/>
+      <SearchFilter regions={regions} regionClick={handleRegionClick} searchType={handleSearchType}/>
 
       {/* COUNTRIES SECTION */}
       <main className="countries-container">
