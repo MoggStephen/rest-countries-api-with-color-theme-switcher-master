@@ -17,10 +17,11 @@ $mwCountry: 16.5rem;
     .country-link {
       background-color: var(--element-bg-color);
       width: 16.5rem;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05),
-              4px 4px 4px rgba(0, 0, 0, 0.05),
-              -4px 4px 4px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05), 4px 4px 4px rgba(0, 0, 0, 0.05),
+        -4px 4px 4px rgba(0, 0, 0, 0.05);
 
+      border: 0;
+      outline: none;
       @media (max-width: 750px) {
         max-width: 33.125rem;
         width: 100%;

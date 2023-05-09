@@ -5,7 +5,7 @@ import SearchFilter from "../../components/countries/search-filter";
 //HOOKS
 import React, { useState, useEffect } from "react";
 
-export default function Countries({countriesData}) {
+export default function Countries({countriesData, handleCountryData}) {
   const [countries, setCountries] = useState(countriesData || []); //Check the countriesData is truthy before setting it.
   const [regions, setRegions] = useState([]);
 
@@ -65,11 +65,12 @@ export default function Countries({countriesData}) {
         <div className="countries-content">
           {countries.map((country) => (
             // Country
-            <a
-              className="country-link rounded-1 text-decoration-none"
+            <button
+              className="country-link rounded-1 text-decoration-none p-0 text-start"
               key={country.name.common}
+              onClick={() => handleCountryData(country)}
             >
-              <article className="country-container p">
+              <article className="country-container">
                 <Image
                   className="country-flag rounded-top"
                   src={country.flags.svg}
@@ -93,7 +94,7 @@ export default function Countries({countriesData}) {
                   </ul>
                 </div>
               </article>
-            </a>
+            </button>
           ))}
         </div>
       </main>
