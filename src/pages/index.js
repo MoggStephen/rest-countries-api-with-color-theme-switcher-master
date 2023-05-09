@@ -49,6 +49,7 @@ export default function Home({ countriesData }) {
   //HANDLE REGION CLICK
   const handleRegionClick = (region) =>{
     const regionBtn = document.getElementById("region-dropdown-btn");
+
     if (region === "all") {
       setCountries(countriesData);
       regionBtn.textContent = "Filter By Region";
@@ -88,6 +89,8 @@ export default function Home({ countriesData }) {
 
       {/* Header */}
       <Header />
+
+      
       {/* SEARCH FILTER SECTION */}
       <SearchFilter regions={regions} regionClick={handleRegionClick} searchType={handleSearchType}/>
 

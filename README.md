@@ -39,3 +39,4 @@ I think getserversideprops so i can cache the data simply in a variable in my ap
 - Dynamically creates the host so that i can use localhost for development and so that vercel deployment works! This is done using environment variables and req.headers.host
 - Querying the api for the region takes quite a while. It will definitely be best if i do the logic myself in js.
 - I need a state of the first countries data on load and the current data that we are searching through.
+- Text Search and region dont work together. Search looks through all countries and ignores region and vice versa.
