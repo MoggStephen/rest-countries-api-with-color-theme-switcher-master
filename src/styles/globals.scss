@@ -41,6 +41,8 @@ html{
 
 #__next {
   background-color: var(--bg-color);
+  //Fixes when content doest fill up the height of the page!
+  min-height: 100vh;
 
   //Logic to sort all containers on the page!
   //Select all direct children of all the direct child elements
