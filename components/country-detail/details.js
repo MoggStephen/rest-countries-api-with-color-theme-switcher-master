@@ -1,6 +1,7 @@
 import Image from "next/image";
 
-export default function Details({ data }) {
+export default function Details({ data, codes }) {
+  console.log(codes);
   return (
     <>
       {
@@ -32,24 +33,26 @@ export default function Details({ data }) {
                     <li>Top Level Domain: {data.tld}</li>
                     <li>
                       Currencies:{" "}
-                      {Object.values(data.currencies).map(
-                        (currencyData, index) => (
-                          <span key={index}>{currencyData.name}</span>
-                        )
-                      )}
+                      {Object.values(data.currencies)
+                        .map(({ name }) => name)
+                        .reduce(
+                          (acc, currency, index, { length }) =>
+                            acc + currency + (index !== length - 1 ? ", " : ""),
+                          ""
+                        )}
                     </li>
                     <li>
-                      Languages:{" "}
-                      {Object.values(data.languages).map(
-                        (languageData, index) => (
-                          <span key={index}>{languageData}{} </span>
-                        )
-                      )}
+                      Languages: {Object.values(data.languages).join(", ")}
                     </li>
                   </ul>
                 </div>
               </div>
-              <div>Border Countries: {}</div>
+              <div>
+                Border Countries:
+                {data.borders.map((code) => (
+                  <span key={code}>{codes[code]}</span>
+                ))}
+              </div>
             </div>
           </div>
         </main>

@@ -5,6 +5,7 @@ import Header from "../../components/header";
 import Countries from "../../components/countries/countries";
 import Details from "../../components/country-detail/details";
 import { useState } from "react";
+import { useEffect } from "react";
 
 // Decipher if we are on localhost for development or vercel for deployment with environment variables!
 // http for local, https for vercel
@@ -33,10 +34,15 @@ export const getServerSideProps = async ({ req }) => {
 export default function Home({data}) {
   const [detailDisplay, setDetailDisplay] = useState(false);
   const [countryInfo, setCountryInfo] = useState(null);
+  const [countryCodes, setCountryCodes] = useState({});
 
   const countryData = (data) =>{
     setCountryInfo(data);
     setDetailDisplay(true);
+  }
+
+  const handleCountryCodes = (codes) =>{
+    setCountryCodes(codes);
   }
 
   return (
@@ -50,7 +56,7 @@ export default function Home({data}) {
 
       <Header />
 
-      { detailDisplay ? <Details data={countryInfo}/> : <Countries countriesData={data} handleCountryData={countryData}/> }
+      { detailDisplay ? <Details data={countryInfo} codes={countryCodes}/> : <Countries countriesData={data} handleCountryData={countryData} countryCodes={handleCountryCodes}/> }
       
     </>
   );
