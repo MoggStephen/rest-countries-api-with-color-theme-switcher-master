@@ -68,7 +68,7 @@ export default function Countries({countriesData, handleCountryData, countryCode
 
       {/* COUNTRIES SECTION */}
       <main className="countries-container">
-        <div className="countries-content">
+        <div className="countries-content align-items-start">
           {countries.map((country) => (
             // Country
             <button

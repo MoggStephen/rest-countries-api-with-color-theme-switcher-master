@@ -19,13 +19,13 @@ $lightModeText: hsl(200, 15%, 8%);
   --text-color: hsl(200, 15%, 8%);
 }
 
-
 $countriesFs: 14px;
 $countryDetailFs: 16px;
 
 @import "./index/index.scss";
 @import "./index/header.scss";
 @import "./index/search-filter.scss";
+@import "./index/details.scss";
 
 //Boilerplate
 *, *::before, *::after{

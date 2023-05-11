@@ -5,7 +5,6 @@ import Header from "../../components/header";
 import Countries from "../../components/countries/countries";
 import Details from "../../components/country-detail/details";
 import { useState } from "react";
-import { useEffect } from "react";
 
 // Decipher if we are on localhost for development or vercel for deployment with environment variables!
 // http for local, https for vercel
@@ -45,6 +44,10 @@ export default function Home({data}) {
     setCountryCodes(codes);
   }
 
+  const handleClickBack = () =>{
+    setDetailDisplay(false);
+  }
+
   return (
     <>
       <Head>
@@ -56,7 +59,7 @@ export default function Home({data}) {
 
       <Header />
 
-      { detailDisplay ? <Details data={countryInfo} codes={countryCodes}/> : <Countries countriesData={data} handleCountryData={countryData} countryCodes={handleCountryCodes}/> }
+      { detailDisplay ? <Details data={countryInfo} codes={countryCodes} back={handleClickBack}/> : <Countries countriesData={data} handleCountryData={countryData} countryCodes={handleCountryCodes}/> }
       
     </>
   );
