@@ -9,9 +9,11 @@
     outline: none;
     &:hover {
       opacity: 0.5;
+      color: var(--text-color);
     }
     &:focus {
       border: 0;
+      color: var(--text-color);
       outline: none;
       box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
       opacity: 0.5;
@@ -39,6 +41,9 @@
             list-style: none;
           }
         }
+      }
+      .border-countries{
+        
       }
     }
   }

@@ -1,6 +1,6 @@
 export default function SearchFilter({ regions, regionClick, searchType }) {
   return (
-    <section className="search-filter-container my-4">
+    <section className="search-filter-container my-5">
       <div className="search-filter-content d-flex justify-content-between align-items-center flex-wrap gap-2">
         <label
           htmlFor="search-country"
