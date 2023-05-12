@@ -75,7 +75,9 @@ export default function Details({ data, codes, back }) {
                   </li>
                   <li>
                     <strong>Languages:</strong>{" "}
-                    {Object.values(data.languages).join(", ")}
+                    {data.languages ? 
+                    Object.values(data.languages).join(", ")
+                  : "none"}
                   </li>
                 </ul>
               </div>

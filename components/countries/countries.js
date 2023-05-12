@@ -77,39 +77,41 @@ export default function Countries({
             // Country
             <button
               className="country-link rounded-1 text-decoration-none p-0 text-start"
-              key={country.name.common}
+              key={country.name.common ? country.name.common : None}
               onClick={() => handleCountryData(country)}
             >
               <article className="country-container">
                 <Image
                   className="country-flag rounded-top"
-                  src={country.flags.svg}
+                  src={country.flags.svg ? country.flags.svg : ""}
                   width={264}
                   height={160}
-                  alt={country.name.common + " Flag"}
+                  alt={
+                    country.name.common
+                      ? country.name.common + " Flag"
+                      : "No alt provided in data"
+                  }
                 />
                 <div className="text-container p-4">
-                  <h2>{country.name.common}</h2>
+                  <h2>{country.name.common ? country.name.common : "None"}</h2>
                   <ul className="p-0">
                     <li>
                       <strong>Population:</strong>{" "}
-                      {country.population.toLocaleString()}
+                      {country.population
+                        ? country.population.toLocaleString()
+                        : "None"}
                     </li>
                     <li>
-                      <strong>Region:</strong> {country.region}
+                      <strong>Region:</strong>{" "}
+                      {country.region ? country.region : "None"}
                     </li>
                     <li>
                       <strong>Capital:</strong>{" "}
-                      {country.capital && Array.isArray(country.capital) ? (
-                        country.capital.map((city, index) => (
-                          <span key={city}>
-                            {index > 0 && ", "}
-                            {city}
-                          </span>
-                        ))
-                      ) : (
-                        <span>None</span>
-                      )}
+                      {country.capital && Array.isArray(country.capital)
+                        ? country.capital.map(
+                            (city, index) => (index > 0 && ", ", city)
+                          )
+                        : "None"}
                     </li>
                   </ul>
                 </div>
