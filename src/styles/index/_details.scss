@@ -43,7 +43,10 @@
         }
       }
       .border-countries{
-        
+        .border-country{
+          background-color: var(--element-bg-color);
+          box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+        }
       }
     }
   }

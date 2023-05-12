@@ -5,7 +5,11 @@ import SearchFilter from "../../components/countries/search-filter";
 //HOOKS
 import React, { useState, useEffect } from "react";
 
-export default function Countries({countriesData, handleCountryData, countryCodes}) {
+export default function Countries({
+  countriesData,
+  handleCountryData,
+  countryCodes,
+}) {
   const [countries, setCountries] = useState(countriesData || []); //Check the countriesData is truthy before setting it.
   const [regions, setRegions] = useState([]);
 
@@ -51,7 +55,7 @@ export default function Countries({countriesData, handleCountryData, countryCode
       //Not sure on the correct country code to use here.
       //Fifa seems to have the most correct countrycodes but cca3 has the largest length.
       // .fifa/.cioc/.cca3
-       countryCodesData[country.cca3] = country.name.common;
+      countryCodesData[country.cca3] = country.name.common;
     });
     setRegions(Array.from(uniqueRegions));
     countryCodes(countryCodesData);
@@ -95,7 +99,17 @@ export default function Countries({countriesData, handleCountryData, countryCode
                       <strong>Region:</strong> {country.region}
                     </li>
                     <li>
-                      <strong>Capital:</strong> {country.capital}
+                      <strong>Capital:</strong>{" "}
+                      {country.capital && Array.isArray(country.capital) ? (
+                        country.capital.map((city, index) => (
+                          <span key={city}>
+                            {index > 0 && ", "}
+                            {city}
+                          </span>
+                        ))
+                      ) : (
+                        <span>No capital data found</span>
+                      )}
                     </li>
                   </ul>
                 </div>

@@ -33,10 +33,11 @@ I think getserversideprops so i can cache the data simply in a variable in my ap
 
 # Rundown
 
-- index.js uses serverSideProps to get countries data from get-countries api. Revalidate is used so it performs like getStaticProps.
+- index.js uses serverSideProps to get countries data from get-countries api. Revalidate is used so to increase the performance.
 - Revalidate handles the caching of the data for 24 hours and the get-countries api handles caching the data if the restcountries api ever breaks!
 - get-countries api will make the request to restcountries api, handle loads of error cases and always returns cached data so the website functionality never breaks!
 - Dynamically creates the host so that i can use localhost for development and so that vercel deployment works! This is done using environment variables and req.headers.host
-- Querying the api for the region takes quite a while. It will definitely be best if i do the logic myself in js.
-- I need a state of the first countries data on load and the current data that we are searching through.
+- Querying the api for the region takes quite a while. It will definitely be best if i do the logic myself in js. The restcountire api can also break so this is the best option.
+- All countries can be taken from prop data on countries. Current filtered data is set in countries state variable.
 - Text Search and region dont work together. Search looks through all countries and ignores region and vice versa.
+- Sometimes on certain countries they dont have properties like currency or border. This can break website functionality. My jsx code handles these error cases and displays "none" for that property.

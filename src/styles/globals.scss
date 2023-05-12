@@ -9,13 +9,13 @@ $lightModeElementColor: hsl(0, 0%, 100%);
 $lightModeText: hsl(200, 15%, 8%);
 
 :root{
-  --bg-color: #202d36;
-  --element-bg-color: #2b3743;
+  --bg-color: hsl(205, 26%, 17%);
+  --element-bg-color: hsl(210, 22%, 22%);
   --text-color: hsl(0, 0%, 100%);
 }
 .dark-mode{
   --bg-color: hsl(0, 0%, 98%);
-  --element-bg-color: hsl(0, 0%, 100%);
+  --element-bg-color: #ffffff;
   --text-color: hsl(200, 15%, 8%);
 }
 

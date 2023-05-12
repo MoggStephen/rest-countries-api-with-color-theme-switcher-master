@@ -1,14 +1,23 @@
 import Image from "next/image";
 //BOOTSTRAP ICONS
-import 'bootstrap-icons/font/bootstrap-icons.scss';
+import "bootstrap-icons/font/bootstrap-icons.scss";
 
 export default function Details({ data, codes, back }) {
+  //Used as data sometimes doenst have a currency property. This causes an error and breaks website functionality.
+  //We need to handle this case and return data not found!
+  function checkProperty(data, property) {
+    if (data.hasOwnProperty(property)) {
+      return true;
+    } else {
+      return "Data not found";
+    }
+  }
   return (
     <>
       {
         <main className="country-details-container">
           <button className="back-btn btn my-5 ps-3 pe-4 " onClick={back}>
-          <i class="bi bi-arrow-left">{" "}</i>Back
+            <i class="bi bi-arrow-left"> </i>Back
           </button>
 
           <div className="country-details-content d-flex justify-content-between gap-5">
@@ -24,7 +33,9 @@ export default function Details({ data, codes, back }) {
                 <ul className="content1">
                   <li>
                     <strong>Native Name:</strong>{" "}
-                    {Object.values(data.name.nativeName)[0].common}
+                    {data.name && data.name.nativeName
+                      ? Object.values(data.name.nativeName)[0].common
+                      : "N/A"}
                   </li>
                   <li>
                     <strong>Population:</strong> {data.population}
@@ -46,13 +57,7 @@ export default function Details({ data, codes, back }) {
                   <li>
                     {/* Loop through data, adding currencies with comma correctly */}
                     <strong>Currencies:</strong>{" "}
-                    {Object.values(data.currencies)
-                      .map(({ name }) => name)
-                      .reduce(
-                        (acc, currency, index, { length }) =>
-                          acc + currency + (index !== length - 1 ? ", " : ""),
-                        ""
-                      )}
+                    
                   </li>
                   <li>
                     <strong>Languages:</strong>{" "}
@@ -60,10 +65,12 @@ export default function Details({ data, codes, back }) {
                   </li>
                 </ul>
               </div>
-              <div class="border-countries">
+              <div class="border-countries d-flex gap-2 flex-wrap">
                 <strong>Border Countries: </strong>
                 {data.borders.map((borderCode) => (
-                  <span key={borderCode}>{codes[borderCode]}</span>
+                  <span className="border-country px-3" key={borderCode}>
+                    {codes[borderCode]}{" "}
+                  </span>
                 ))}
               </div>
             </div>
