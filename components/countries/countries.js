@@ -89,7 +89,7 @@ export default function Countries({
                   alt={
                     country.name.common
                       ? country.name.common + " Flag"
-                      : "No alt provided in data"
+                      : "Flag image"
                   }
                 />
                 <div className="text-container p-4">

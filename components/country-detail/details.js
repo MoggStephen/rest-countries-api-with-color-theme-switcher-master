@@ -22,47 +22,52 @@ export default function Details({ data, codes, back }) {
 
           <div className="country-details-content d-flex justify-content-between gap-5">
             <Image
-              src={data.flags.svg}
+              src={data.flags.svg ? data.flags.svg : "No alt provided"}
               width={550}
               height={398}
-              alt={data.name.common + " Flag"}
+              alt={data.name.common ? data.name.common + " Flag" : "Flag image"}
             />
             <div className="details-text-content d-flex flex-column justify-content-around">
-              <h2 className="">{data.name.common}</h2>
+              <h2 className="">
+                {data.name.common ? data.name.common : "None"}
+              </h2>
               <div className="content-container d-flex gap-5 my-5">
                 <ul className="content1">
                   <li>
                     <strong>Native Name:</strong>{" "}
-                    {data.name && data.name.nativeName
+                    {data.name.nativeName
                       ? Object.values(data.name.nativeName)[0].common
-                      : "N/A"}
+                      : "None"}
                   </li>
                   <li>
-                    <strong>Population:</strong> {data.population}
+                    <strong>Population:</strong>{" "}
+                    {data.population ? data.population : "None"}
                   </li>
                   <li>
-                    <strong>Region:</strong> {data.region}
+                    <strong>Region:</strong>{" "}
+                    {data.region ? data.region : "None"}
                   </li>
                   <li>
-                    <strong>Sub Region:</strong> {data.subregion}
+                    <strong>Sub Region:</strong>{" "}
+                    {data.subregion ? data.subregion : "None"}
                   </li>
                   <li>
                     <strong>Capital:</strong>{" "}
-                    {data.capital && Array.isArray(data.capital) ? (
-                      data.capital.map((city, index) => (
-                        <span key={city}>
-                          {index > 0 && ", "}
-                          {city}
-                        </span>
-                      ))
-                    ) : (
-                      <span>None</span>
-                    )}
+                    {data.capital
+                      ? data.capital.map(
+                          (city, index) => (index > 0 && ", ", city)
+                        )
+                      : "None"}
                   </li>
                 </ul>
                 <ul className="content2">
                   <li>
-                    <strong>Top Level Domain:</strong> {data.tld}
+                    <strong>Top Level Domain:</strong>{" "}
+                    {data.tld
+                      ? data.tld.map(
+                          (domain, index) => (index > 0 && ", ", domain)
+                        )
+                      : "None"}
                   </li>
                   <li>
                     {/* Loop through data, adding currencies with comma correctly */}
@@ -75,9 +80,9 @@ export default function Details({ data, codes, back }) {
                   </li>
                   <li>
                     <strong>Languages:</strong>{" "}
-                    {data.languages ? 
-                    Object.values(data.languages).join(", ")
-                  : "none"}
+                    {data.languages
+                      ? Object.values(data.languages).join(", ")
+                      : "none"}
                   </li>
                 </ul>
               </div>
