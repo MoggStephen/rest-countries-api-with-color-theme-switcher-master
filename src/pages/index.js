@@ -34,8 +34,9 @@ export default function Home({data}) {
   const [detailDisplay, setDetailDisplay] = useState(false);
   const [countryInfo, setCountryInfo] = useState(null);
   const [countryCodes, setCountryCodes] = useState({});
+  const [currentFilters, setCurrentFilters] = useState();
 
-  const countryData = (data) =>{
+  const handleCountryData = (data) =>{
     setCountryInfo(data);
     setDetailDisplay(true);
   }
@@ -59,7 +60,7 @@ export default function Home({data}) {
 
       <Header />
 
-      { detailDisplay ? <Details data={countryInfo} codes={countryCodes} back={handleClickBack}/> : <Countries countriesData={data} handleCountryData={countryData} countryCodes={handleCountryCodes}/> }
+      { detailDisplay ? <Details data={countryInfo} codes={countryCodes} back={handleClickBack}/> : <Countries countriesData={data} countryData={handleCountryData} countryCodes={handleCountryCodes}/> }
       
     </>
   );

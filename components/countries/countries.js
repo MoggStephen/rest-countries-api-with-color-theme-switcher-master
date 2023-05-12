@@ -7,7 +7,7 @@ import React, { useState, useEffect } from "react";
 
 export default function Countries({
   countriesData,
-  handleCountryData,
+  countryData,
   countryCodes,
 }) {
   const [countries, setCountries] = useState(countriesData || []); //Check the countriesData is truthy before setting it.
@@ -78,7 +78,7 @@ export default function Countries({
             <button
               className="country-link rounded-1 text-decoration-none p-0 text-start"
               key={country.name.common ? country.name.common : None}
-              onClick={() => handleCountryData(country)}
+              onClick={() => countryData(country)}
             >
               <article className="country-container">
                 <Image
