@@ -47,7 +47,17 @@ export default function Details({ data, codes, back }) {
                     <strong>Sub Region:</strong> {data.subregion}
                   </li>
                   <li>
-                    <strong>Capital:</strong> {data.capital}
+                    <strong>Capital:</strong>{" "}
+                    {data.capital && Array.isArray(data.capital) ? (
+                      data.capital.map((city, index) => (
+                        <span key={city}>
+                          {index > 0 && ", "}
+                          {city}
+                        </span>
+                      ))
+                    ) : (
+                      <span>None</span>
+                    )}
                   </li>
                 </ul>
                 <ul className="content2">
@@ -57,12 +67,11 @@ export default function Details({ data, codes, back }) {
                   <li>
                     {/* Loop through data, adding currencies with comma correctly */}
                     <strong>Currencies:</strong>{" "}
-                    { data.currencies ? 
-                      Object.values(data.currencies)
-                        .map((currencyData) => currencyData.name)
-                        .join(", ")       
-                      : "None"
-                    }
+                    {data.currencies
+                      ? Object.values(data.currencies)
+                          .map((currencyData) => currencyData.name)
+                          .join(", ")
+                      : "None"}
                   </li>
                   <li>
                     <strong>Languages:</strong>{" "}
@@ -72,7 +81,13 @@ export default function Details({ data, codes, back }) {
               </div>
               <div class="border-countries d-flex gap-2 flex-wrap">
                 <strong>Border Countries: </strong>
-                
+                {data.borders
+                  ? data.borders.map((borderCode) => (
+                      <span className="border-country px-3" key={borderCode}>
+                        {codes[borderCode]}{" "}
+                      </span>
+                    ))
+                  : "none"}
               </div>
             </div>
           </div>
