@@ -57,8 +57,10 @@ export default function Details({ data, codes, back }) {
                   <li>
                     {/* Loop through data, adding currencies with comma correctly */}
                     <strong>Currencies:</strong>{" "}
-                    {data.currencies ? 
-                      Object.values(data.currencies)[0].name
+                    { data.currencies ? 
+                      Object.values(data.currencies)
+                        .map((currencyData) => currencyData.name)
+                        .join(", ")       
                       : "None"
                     }
                   </li>
@@ -70,11 +72,7 @@ export default function Details({ data, codes, back }) {
               </div>
               <div class="border-countries d-flex gap-2 flex-wrap">
                 <strong>Border Countries: </strong>
-                {data.borders.map((borderCode) => (
-                  <span className="border-country px-3" key={borderCode}>
-                    {codes[borderCode]}{" "}
-                  </span>
-                ))}
+                
               </div>
             </div>
           </div>

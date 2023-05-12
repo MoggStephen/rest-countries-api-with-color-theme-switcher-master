@@ -52,6 +52,7 @@ export default function Countries({
       if (country.region && !uniqueRegions.has(country.region)) {
         uniqueRegions.add(country.region);
       }
+      console.log(country.currencies , country.name.common)
       //Not sure on the correct country code to use here.
       //Fifa seems to have the most correct countrycodes but cca3 has the largest length.
       // .fifa/.cioc/.cca3
@@ -108,7 +109,7 @@ export default function Countries({
                           </span>
                         ))
                       ) : (
-                        <span>No capital data found</span>
+                        <span>None</span>
                       )}
                     </li>
                   </ul>
