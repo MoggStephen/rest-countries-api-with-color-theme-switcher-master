@@ -57,7 +57,10 @@ export default function Details({ data, codes, back }) {
                   <li>
                     {/* Loop through data, adding currencies with comma correctly */}
                     <strong>Currencies:</strong>{" "}
-                    
+                    {data.currencies ? 
+                      Object.values(data.currencies)[0].name
+                      : "None"
+                    }
                   </li>
                   <li>
                     <strong>Languages:</strong>{" "}
